@@ -3,6 +3,7 @@ import { Schema, model, Document, Mongoose, Types } from "mongoose";
 export interface ISession extends Document {
   user: string;
   isValid: boolean;
+  axel: string;
 } //HPrueba
 
 const sessionSchema = new Schema(
