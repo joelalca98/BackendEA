@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { createUserHandler, deleteUserByIdHandler, getAllUsersHandler, getUserByIdHandler, loginHandler, logOutHandler, updateUserHandler } from '../src/controller/user.controller';
 import { requeriesUser } from '../src/middleware/requiresUser';
 import { validateUser } from '../src/middleware/user.validate';
+import { loginSchema } from '../src/schemas/login.schema';
 import { userSchema } from '../src/schemas/user.schema';
 
 const router = Router();  
@@ -13,11 +14,10 @@ router.get("/user", getAllUsersHandler);
 router.post("/user", validateUser(userSchema),createUserHandler);
 
 //login user
-router.post("/user/login",validateUser(userSchema),loginHandler); 
+router.post("/user/login",validateUser(loginSchema),loginHandler); 
   
 //Get user by Id
 router.get("/user/:id", getUserByIdHandler);
-
 
 //Operations requiring user
 router.use(requeriesUser); 
